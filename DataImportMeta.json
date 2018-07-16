@@ -1,0 +1,67 @@
+/**
+Proposed unified POJO structure for Import & Data Migration
+**/
+
+{
+  "DataImportMeta": {
+    "job_id": "",
+    "job_type": "",
+    "job_status": "",
+    "job_step": "",
+    "job_start_time": "",
+    "job_end_time": "",
+    "job_created_by": "",
+    "job_scope": "",
+    "current_module": "",
+    "to_notify": "",
+    "charset": "",
+    "error": "",
+    "module_details": [
+      {
+        "id": "",
+        "se_type": "",
+        "iteration": "",
+        "sequence": "",
+        "data_table": "",
+        "abort_limit": "",
+        "is_system_module": "",
+        "added_count": "",
+        "updated_count": "",
+        "skipped_count": "",
+        "migration_map": "",
+        "parent_modules": []
+      }
+    ],
+    "lookups": {
+      "workflow_id": "",
+      "lar_id": "",
+      "task_engine_id": "",
+      "campaign_id": "",
+      "file_id": ""
+    },
+    "other_info": {
+      "source_system": "",
+      "instance_url": "",
+      "access_token": "",
+      "refresh_token": "",
+      "is_approved": ""
+    }
+  }
+}
+
+/**
+ENUMS: 
+job_status : [INPROGRESS, COMPLETED, FAILED, ROLLBACKED, SCHEDULED, ..]
+job_step : [MODULEMAPPING, FIELDMAPPING, FILEPUPLOAD, REVIEW,..]
+job_type : [INSERT, SKIP, UPDATE, UPSERT, DATAMIGRATION, SHEETVIEW, BULKWRITE, MASSUPDATE,..]
+
+Booleans:
+to_notify, is_approved, is_system_module
+
+current_module :: Id of module in progress, to handle resume migration
+error :: Error reason in case of failure, to help APIs
+parent_module :: json array of dependant module. To help line item handling, circular lookups.
+migration_map :: Current migrationmap as in CrmMigrationDetails. Entity Map is fitted inside this map.
+file_id :: To support APIs
+
+**/
