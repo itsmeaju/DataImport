@@ -3,36 +3,37 @@ Proposed unified POJO structure for Import & Data Migration
 **/
 
 {
-  "DataImportMeta": {
-    "job_id": "",
-    "job_type": "",
-    "job_status": "",
-    "job_step": "",
-    "job_start_time": "",
-    "job_end_time": "",
-    "job_created_by": "",
-    "job_scope": "",
-    "current_module": "",
-    "to_notify": "",
+  "import": {
+    "id": "",
+    "type": "",
+    "status": "",
+    "step": "", // can it be removed as it is UI dependent?
+    "job_start_time": "", // do we require job related information in api and UI?
+    "job_end_time": "",// do we require job related information in api and UI
+    "job_created_by": "",// do we require job related information in api and UI
+    "job_scope": "",// do we require job related information in api and UI
+    "current_module": "",// what we will do in future when we run in parallel
+    "to_notify": "",// key can be refactored to more general word.
     "charset": "",
-    "error": "",
-    "module_details": [
+    "error": "", // is error a property of import? we will think it deeply?
+    "module_details": [ // shall we use related_modules?
       {
         "id": "",
-        "se_type": "",
-        "iteration": "",
-        "sequence": "",
-        "data_table": "",
-        "abort_limit": "",
-        "is_system_module": "",
-        "added_count": "",
+        "se_type": "", // what is se_type? will a novice developer/user understands it?
+        "iteration": "", 
+        "sequence": "", 
+        "data_table": "", // data_table??
+        "abort_limit": "", 
+        "is_system_module": "", //"isSystemModule
+        "added_count": "", 
         "updated_count": "",
         "skipped_count": "",
-        "migration_map": "",
-        "parent_modules": []
+        "migration_map": "",  // Can we redesign this to a pojo??
+        "parent_modules": [] // what is the use of this key?
+        // related_files information is yet to be included?
       }
     ],
-    "lookups": {
+    "lookups": {     // can we try to in corporate this in field_map pojo??
       "workflow_id": "",
       "lar_id": "",
       "task_engine_id": "",
